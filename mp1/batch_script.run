@@ -1,0 +1,9 @@
+#!/bin/bash
+#PBS -l walltime=00:20:00
+#PBS -l nodes=1:ppn=12
+#PBS -N matmul
+#PBS -q cs
+#PBS -W group_list=19fa-cs420d3-vtune
+
+cd $PBS_O_WORKDIR
+./randMatrix 100 100 100 100 | ./matrix-nop

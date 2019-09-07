@@ -17,7 +17,14 @@ int main(int argc, char** argv) {
     readMatrix(&m2);
 
     //TODO: Check for error conditions
+    if(m1.col != m2.row) error();
 
+    result.row = m1.row;
+    result.col = m2.col;
+    result.val = (double**) malloc(sizeof(double*) * result.row);
+    for(int i = 0; i < result.row; i++)
+        result.val[i] = (double*) malloc(sizeof(double*) * result.col);
+    
     if(tiled == -1) matrixMultiply(m1, m2, &result);
     else    matrixTiledMultiply(m1, m2, &result, tiled);
 
@@ -28,7 +35,7 @@ int main(int argc, char** argv) {
 
 int isTiled(int argc, char** argv){
     int tileSize = -1;
-    for(int n=1; n < argc; n++){
+    for(int n = 1; n < argc; n++){
         if(strcmp(argv[n], "-t") == 0){
             tileSize = atoi(argv[n+1]);
             break;
@@ -44,9 +51,9 @@ void readMatrix(matrix* mat){
 
     mat->val = (double**) malloc(sizeof(double*) * mat->row);
 
-    for(int n=0; n < mat->row; n++){
+    for(int n = 0; n < mat->row; n++) {
         mat->val[n] = (double*) malloc(sizeof(double*) * mat->col);
-        for(int m=0; m < mat->col; m++){
+        for(int m = 0; m < mat->col; m++) {
             scanf("%lf", &mat->val[n][m]);
         }
     }
@@ -55,9 +62,19 @@ void readMatrix(matrix* mat){
 
 void matrixMultiply(matrix m1, matrix m2, matrix* result){
    //TODO: Naive Matrix Multiplication
+   for(int i = 0; i < result->row; i++) {
+       for(int j = 0; j < result->col; j++) {
+           double subtotal = 0.0;
+           for(int k = 0; k < m2.row; k++)
+               subtotal += m1.val[i][k] * m2.val[k][j];
+           result->val[i][j] = subtotal;
+       }
+   }
+   
+   return;
 }
 
-void matrixTiledMultiply(matrix m1, matrix m2, matrix *result, int tileSize) {
+void matrixTiledMultiply(matrix m1, matrix m2, matrix* result, int tileSize) {
     //TODO: Tiled Matrix Multiplication
 }
 
@@ -68,13 +85,13 @@ void error(){
 
 
 void printAnalytics(long ops, double mFlops){
-    printf("Operations: %ld and MegaFlops/s:%lf\n",ops, mFlops);
+    printf("Operations: %ld and MegaFlops/s:%lf\n", ops, mFlops);
 }
 
 int onlyAnalytics(int argc, char **argv){
     int oaFlag = -1;
-    for(int n=1; n < argc; n++){
-        if(strcmp(argv[n], "-oa") == 0){
+    for(int n = 1; n < argc; n++) {
+        if(strcmp(argv[n], "-oa") == 0) {
             oaFlag = 1;
             break;
         }
@@ -84,8 +101,8 @@ int onlyAnalytics(int argc, char **argv){
 
 void printMatrix(matrix mat){
     printf("%d %d\n", mat.row, mat.col);
-    for(int n=0; n < mat.row; n++){
-        for(int m=0; m < mat.col; m++){
+    for(int n = 0; n < mat.row; n++) {
+        for(int m = 0; m < mat.col; m++) {
             printf("%lf ", mat.val[n][m]);
         }
         printf("\n");
