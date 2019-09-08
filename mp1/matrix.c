@@ -23,17 +23,26 @@ int main(int argc, char** argv) {
     result.row = m1.row;
     result.col = m2.col;
     result.val = (double**) malloc(sizeof(double*) * result.row);
-    for(int i = 0; i < result.row; i++)
+    for(int i = 0; i < result.row; i++) {
         result.val[i] = (double*) malloc(sizeof(double*) * result.col);
+        for(int j = 0; j < result.col; j++)
+            result.val[i][j] = 0.0;
+    }
     
     double startTime, endTime;
-    long ops = 0;
+    long ops;
     get_walltime(&startTime);
     
-    if(tiled == -1) matrixMultiply(m1, m2, &result, &ops);
-    else    matrixTiledMultiply(m1, m2, &result, tiled, &ops);
+    if(tiled == -1) matrixMultiply(m1, m2, &result);
+    else {
+        if(m1.row%tiled != 0 || m1.col%tiled != 0 || m1.row != m1.col) error();
+        if(m2.row%tiled != 0 || m2.col%tiled != 0 || m2.row != m2.col) error();
+        matrixTiledMultiply(m1, m2, &result, tiled);
+    }
     
     get_walltime(&endTime);
+    if(tiled == -1) ops = result.row * result.col * m2.row * 2;
+    else ops = (m1.row / tiled) * (m1.row / tiled) * (m1.row / tiled) * tiled * tiled * tiled * 2;
     printAnalytics(ops, ops/(endTime - startTime)/1000000.0);
 
     if(onlyAnalytics(argc, argv) == -1) printMatrix(result);
@@ -68,24 +77,33 @@ void readMatrix(matrix* mat) {
 }
 
 
-void matrixMultiply(matrix m1, matrix m2, matrix* result, long* ops) {
+void matrixMultiply(matrix m1, matrix m2, matrix* result) {
    //TODO: Naive Matrix Multiplication
-   for(int i = 0; i < result->row; i++) {
-       for(int j = 0; j < result->col; j++) {
-           double subtotal = 0.0;
+   for(int i = 0; i < result->row; i++)
+       for(int j = 0; j < result->col; j++)
            for(int k = 0; k < m2.row; k++)
-               subtotal += m1.val[i][k] * m2.val[k][j];
-           result->val[i][j] = subtotal;
-       }
-   }
-   
-   *ops += result->row * result->col * m2.row * 2;
+               result->val[i][j] += m1.val[i][k] * m2.val[k][j];
 
    return;
 }
 
-void matrixTiledMultiply(matrix m1, matrix m2, matrix* result, int tileSize, long* ops) {
+void matrixTiledMultiply(matrix m1, matrix m2, matrix* result, int tileSize) {
     //TODO: Tiled Matrix Multiplication
+    int numOfTiles = m1.row / tileSize;
+    
+    for(int rowOfBlocks = 0; rowOfBlocks < numOfTiles; rowOfBlocks++)
+        for(int colOfBlocks = 0; colOfBlocks < numOfTiles; colOfBlocks++)
+            for(int innerBlocks = 0; innerBlocks < numOfTiles; innerBlocks++) {
+                int rowOffset = rowOfBlocks*tileSize,
+                    colOffset = colOfBlocks*tileSize,
+                    innOffset = innerBlocks*tileSize;
+                for(int i = rowOffset; i < rowOffset + tileSize; i++)
+                    for(int j = colOffset; j < colOffset + tileSize; j++)
+                        for(int k = innOffset; k < innOffset + tileSize; k++)
+                            result->val[i][j] += m1.val[i][k] * m2.val[k][j];
+            }
+    
+    return;
 }
 
 void error() {

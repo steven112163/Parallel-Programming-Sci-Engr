@@ -36,13 +36,13 @@ void readMatrix(matrix*);
  * Multiply the matrix using the naive matrix multiplication technique.
  * Should call printResults with the respective metrics after the multiplication is complete.
  */
-void matrixMultiply(matrix, matrix, matrix*, long*);
+void matrixMultiply(matrix, matrix, matrix*);
 
 /**
  * Multiply the matrix using the tiled / block matrix multiplication technique.
  * Should call printResults with the respective metrics after the multiplication is complete.
  */
-void matrixTiledMultiply(matrix, matrix, matrix*, int, long*);
+void matrixTiledMultiply(matrix, matrix, matrix*, int);
 
 /**
  * Print the analytics i.e. Total number of flops(Floating point operations) & MegaFlops per second.

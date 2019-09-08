@@ -6,4 +6,4 @@
 #PBS -W group_list=19fa-cs420d3-vtune
 
 cd $PBS_O_WORKDIR
-./randMatrix 100 100 100 100 | ./matrix-nop -oa
+./randMatrix 100 100 100 100 | ./matrix-nop -t 50
