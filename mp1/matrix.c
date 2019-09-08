@@ -19,7 +19,14 @@ int main(int argc, char** argv) {
 
     //TODO: Check for error conditions
     if(m1.col != m2.row) error();
+    if(m1.row == 0 || m1.col == 0 || m2.row == 0 || m2.col == 0) error();
+    if(tiled != -1) {
+        if(tiled == 0) error();
+        if(m1.row%tiled != 0 || m1.col%tiled != 0 ||
+           m2.row%tiled != 0 || m2.col%tiled != 0) error();
+    }
 
+    // Initalize result matrix
     result.row = m1.row;
     result.col = m2.col;
     result.val = (double**) malloc(sizeof(double*) * result.row);
@@ -29,20 +36,19 @@ int main(int argc, char** argv) {
             result.val[i][j] = 0.0;
     }
     
+    // Get start time
     double startTime, endTime;
     long ops;
     get_walltime(&startTime);
     
+    // Do matrix multiplication
     if(tiled == -1) matrixMultiply(m1, m2, &result);
-    else {
-        if(m1.row%tiled != 0 || m1.col%tiled != 0 || m1.row != m1.col) error();
-        if(m2.row%tiled != 0 || m2.col%tiled != 0 || m2.row != m2.col) error();
-        matrixTiledMultiply(m1, m2, &result, tiled);
-    }
+    else matrixTiledMultiply(m1, m2, &result, tiled);
     
+    // Get end time and calculate ops, then print analytics
     get_walltime(&endTime);
     if(tiled == -1) ops = result.row * result.col * m2.row * 2;
-    else ops = (m1.row / tiled) * (m1.row / tiled) * (m1.row / tiled) * tiled * tiled * tiled * 2;
+    else ops = (m1.row / tiled) * (m2.col / tiled) * (m2.row / tiled) * tiled * tiled * tiled * 2;
     printAnalytics(ops, ops/(endTime - startTime)/1000000.0);
 
     if(onlyAnalytics(argc, argv) == -1) printMatrix(result);
@@ -87,24 +93,28 @@ void matrixMultiply(matrix m1, matrix m2, matrix* result) {
    return;
 }
 
+
 void matrixTiledMultiply(matrix m1, matrix m2, matrix* result, int tileSize) {
     //TODO: Tiled Matrix Multiplication
-    int numOfTiles = m1.row / tileSize;
+    int rowTiles = m1.row / tileSize,
+        colTiles = m2.col / tileSize,
+        innTiles = m2.row / tileSize;
     
-    for(int rowOfBlocks = 0; rowOfBlocks < numOfTiles; rowOfBlocks++)
-        for(int colOfBlocks = 0; colOfBlocks < numOfTiles; colOfBlocks++)
-            for(int innerBlocks = 0; innerBlocks < numOfTiles; innerBlocks++) {
-                int rowOffset = rowOfBlocks*tileSize,
-                    colOffset = colOfBlocks*tileSize,
-                    innOffset = innerBlocks*tileSize;
-                for(int i = rowOffset; i < rowOffset + tileSize; i++)
-                    for(int j = colOffset; j < colOffset + tileSize; j++)
-                        for(int k = innOffset; k < innOffset + tileSize; k++)
+    for(int rowOfBlocks = 0; rowOfBlocks < rowTiles; rowOfBlocks++)
+        for(int colOfBlocks = 0; colOfBlocks < colTiles; colOfBlocks++)
+            for(int innerBlocks = 0; innerBlocks < innTiles; innerBlocks++) {
+                int rowOffset = rowOfBlocks*tileSize + tileSize,
+                    colOffset = colOfBlocks*tileSize + tileSize,
+                    innOffset = innerBlocks*tileSize + tileSize;
+                for(int i = rowOffset - tileSize; i < rowOffset; i++)
+                    for(int j = colOffset - tileSize; j < colOffset; j++)
+                        for(int k = innOffset - tileSize; k < innOffset; k++)
                             result->val[i][j] += m1.val[i][k] * m2.val[k][j];
             }
     
     return;
 }
+
 
 void error() {
     printf("Error. Exiting the program.\n");
@@ -115,6 +125,7 @@ void error() {
 void printAnalytics(long ops, double mFlops) {
     printf("Operations: %ld and MegaFlops/s:%lf\n", ops, mFlops);
 }
+
 
 int onlyAnalytics(int argc, char **argv) {
     int oaFlag = -1;
@@ -127,6 +138,7 @@ int onlyAnalytics(int argc, char **argv) {
     return oaFlag;
 }
 
+
 void printMatrix(matrix mat) {
     printf("%d %d\n", mat.row, mat.col);
     for(int n = 0; n < mat.row; n++) {
@@ -137,11 +149,13 @@ void printMatrix(matrix mat) {
     }
 }
 
+
 void get_walltime_(double* wcTime) {
     struct timeval tp;
     gettimeofday(&tp, NULL);
     *wcTime = (double)(tp.tv_sec + tp.tv_usec/1000000.0);
 }
+
 
 void get_walltime(double* wcTime) {
     get_walltime_(wcTime);
