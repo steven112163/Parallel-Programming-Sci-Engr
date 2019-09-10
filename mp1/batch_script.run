@@ -6,4 +6,9 @@
 #PBS -W group_list=19fa-cs420d3-vtune
 
 cd $PBS_O_WORKDIR
-./randMatrix 100 100 100 100 | ./matrix-nop -t 10
+module load intel/.19.0
+allSize=(100 300 500 1000 2000)
+for n in ${allSize[@]}; do
+  echo "running with n=$n"
+  amplxe-cl -collect memory-access ./randMatrix $n $n $n $n | ./matrix-nop -oa -t $n*0.5
+done
