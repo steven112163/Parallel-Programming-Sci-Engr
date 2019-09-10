@@ -10,5 +10,6 @@ module load intel/.19.0
 allSize=(100 300 500 1000 2000)
 for n in ${allSize[@]}; do
   echo "running with n=$n"
-  amplxe-cl -collect memory-access ./randMatrix $n $n $n $n | ./matrix-nop -oa -t $n*0.5
+  ./randMatrix $n $n $n $n > test.txt
+  amplxe-cl -collect memory-access ./matrix-nop -oa -t $n*0.5 < test.txt
 done
