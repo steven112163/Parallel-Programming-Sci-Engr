@@ -1,0 +1,354 @@
+running with n=100, b=2
+Operations: 2000000 and MegaFlops/s:326.633751
+Elapsed Time: 0.031s
+    CPU Time: 0.020s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 128                          0.600              0.000                                           0.0%
+DRAM Single-Package, GB/sec  64                           0.500              0.000                                           0.0%
+QPI Outgoing, GB/sec         68                           0.200              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "2" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:20:14 11/09/2019 UTC
+    Collection stop time: 05:20:14 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 64.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
+running with n=100, b=4
+Operations: 2000000 and MegaFlops/s:665.076350
+Elapsed Time: 0.028s
+    CPU Time: 0.020s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 7
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 126                          0.400              0.000                                           0.0%
+DRAM Single-Package, GB/sec  63                           0.300              0.000                                           0.0%
+QPI Outgoing, GB/sec         68                           0.100              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "4" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:20:26 11/09/2019 UTC
+    Collection stop time: 05:20:26 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 63.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
+running with n=100, b=5
+Operations: 2000000 and MegaFlops/s:777.298740
+Elapsed Time: 0.030s
+    CPU Time: 0.020s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 7
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 128                          0.400              0.000                                           0.0%
+DRAM Single-Package, GB/sec  64                           0.300              0.000                                           0.0%
+QPI Outgoing, GB/sec         68                           0.100              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "5" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:20:43 11/09/2019 UTC
+    Collection stop time: 05:20:43 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 64.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
+running with n=100, b=10
+Operations: 2000000 and MegaFlops/s:750.456969
+Elapsed Time: 0.028s
+    CPU Time: 0.020s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 7
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 126                          0.400              0.000                                           0.0%
+DRAM Single-Package, GB/sec  63                           0.300              0.000                                           0.0%
+QPI Outgoing, GB/sec         68                           0.100              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "10" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:20:56 11/09/2019 UTC
+    Collection stop time: 05:20:56 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 63.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
+running with n=100, b=20
+Operations: 2000000 and MegaFlops/s:1007.519577
+Elapsed Time: 0.029s
+    CPU Time: 0.015s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 7
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 126                          0.300              0.000                                           0.0%
+DRAM Single-Package, GB/sec  63                           0.200              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "20" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:21:11 11/09/2019 UTC
+    Collection stop time: 05:21:11 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 63.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
+running with n=100, b=25
+Operations: 2000000 and MegaFlops/s:1133.902136
+Elapsed Time: 0.040s
+    CPU Time: 0.015s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Average Latency (cycles): 7
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 126                          0.600              0.000                                           0.0%
+DRAM Single-Package, GB/sec  63                           0.400              0.000                                           0.0%
+QPI Outgoing, GB/sec         68                           0.100              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "25" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:21:25 11/09/2019 UTC
+    Collection stop time: 05:21:25 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 63.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
+running with n=100, b=50
+Operations: 2000000 and MegaFlops/s:1302.983535
+Elapsed Time: 0.030s
+    CPU Time: 0.015s
+    Memory Bound: 0.0% of Pipeline Slots
+        L1 Bound: 0.0% of Clockticks
+        L2 Bound: 0.0% of Clockticks
+        L3 Bound: 0.0% of Clockticks
+        DRAM Bound: 0.0% of Clockticks
+            DRAM Bandwidth Bound: 0.0% of Elapsed Time
+            QPI Bandwidth Bound: 0.0% of Elapsed Time
+            Memory Latency
+                Local DRAM: 0.0% of Clockticks
+                Remote DRAM: 0.0% of Clockticks
+                Remote Cache: 0.0% of Clockticks
+        NUMA: % of Remote Accesses: 0.0%
+    Loads: 0
+    Stores: 0
+    LLC Miss Count: 0
+        Local DRAM Access Count: 0
+        Remote DRAM Access Count: 0
+        Remote Cache Access Count: 0
+    Total Thread Count: 1
+    Paused Time: 0s
+
+Bandwidth Utilization
+Bandwidth Domain             Platform Maximum  Observed Maximum  Average Bandwidth  % of Elapsed Time with High BW Utilization(%)
+---------------------------  ----------------  ----------------  -----------------  ---------------------------------------------
+DRAM, GB/sec                 128                          0.400              0.000                                           0.0%
+DRAM Single-Package, GB/sec  64                           0.300              0.000                                           0.0%
+QPI Outgoing, GB/sec         68                           0.100              0.000                                           0.0%
+Collection and Platform Info
+    Application Command Line: ./matrix-nop "-oa" "-t" "50" 
+    User Name: yhyuan2
+    Operating System: 3.10.0-957.21.3.el7.x86_64 NAME="CentOS Linux" VERSION="7 (Core)" ID="centos" ID_LIKE="rhel fedora" VERSION_ID="7" PRETTY_NAME="CentOS Linux 7 (Core)" ANSI_COLOR="0;31" CPE_NAME="cpe:/o:centos:centos:7" HOME_URL="https://www.centos.org/" BUG_REPORT_URL="https://bugs.centos.org/"  CENTOS_MANTISBT_PROJECT="CentOS-7" CENTOS_MANTISBT_PROJECT_VERSION="7" REDHAT_SUPPORT_PRODUCT="centos" REDHAT_SUPPORT_PRODUCT_VERSION="7" 
+    Computer Name: golub294
+    Result Size: 4 MB 
+    Collection start time: 05:21:39 11/09/2019 UTC
+    Collection stop time: 05:21:39 11/09/2019 UTC
+    Collector Type: Event-based sampling driver
+    CPU
+        Name: Intel(R) Xeon(R) E5/E7 v3 Processor code named Haswell
+        Frequency: 2.500 GHz 
+        Logical CPU Count: 24
+        Max DRAM Single-Package Bandwidth: 64.000 GB/s
+
+If you want to skip descriptions of detected performance issues in the report,
+enter: amplxe-cl -report summary -report-knob show-issues=false -r
+<my_result_dir>. Alternatively, you may view the report in the csv format:
+amplxe-cl -report <report_name> -format=csv.
