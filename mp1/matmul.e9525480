@@ -1,0 +1,26 @@
+----------------------------------------
+Begin Torque Prologue (Fri Sep 13 11:11:09 2019)
+Job ID:           9525480.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         matmul
+Limits:           walltime=00:20:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub294
+End Torque Prologue
+----------------------------------------
+----------------------------------------
+Begin Torque Epilogue (Fri Sep 13 11:11:25 2019)
+Job ID:           9525480.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         matmul
+Session:          189887
+Limits:           walltime=00:20:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Resources:        cput=00:00:18,vmem=0kb,walltime=00:00:15,mem=0kb,energy_used=0
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub294
+End Torque Epilogue
+----------------------------------------

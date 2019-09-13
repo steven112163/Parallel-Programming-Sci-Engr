@@ -7,9 +7,9 @@
 
 cd $PBS_O_WORKDIR
 module load intel/.19.0
-allSize=(2 4 5 8 10 16 20 25 40 50 80 100 125 200 250 400 500 1000)
-for b in ${allSize[@]}; do
-  echo "running with n=2000, b=$b"
-  ./randMatrix 2000 2000 2000 2000 > test.txt
-  amplxe-cl -collect memory-access ./matrix-nop -oa -t $b < test.txt
+allSize=(100 300 500 1000 1500 2000 3000 3500 4000 4500 5000)
+for n in ${allSize[@]}; do
+  echo "running with n=$n, b=1"
+  ./randMatrix $n $n $n $n > test.txt
+  ./matrix-nop -oa -t 50 < test.txt
 done
