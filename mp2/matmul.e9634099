@@ -1,0 +1,34 @@
+----------------------------------------
+Begin Torque Prologue (Sat Sep 28 18:35:46 2019)
+Job ID:           9634099.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         matmul
+Limits:           walltime=00:20:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub296
+End Torque Prologue
+----------------------------------------
+amplxe: Collection started. To stop the collection, either press CTRL-C or enter from another console window: amplxe-cl -r /home/yhyuan2/yhyuan2/mp2/r000hs -command stop.
+amplxe: Collection stopped.
+amplxe: Using result path `/home/yhyuan2/yhyuan2/mp2/r000hs'
+amplxe: Executing actions  0 %                                                 amplxe: Executing actions  0 % Finalizing results                              amplxe: Executing actions  0 % Finalizing the result                           amplxe: Executing actions  0 % Clearing the database                           amplxe: Executing actions  7 % Clearing the database                           amplxe: Executing actions  7 % Loading raw data to the database                amplxe: Executing actions  7 % Loading 'systemcollector-128460-golub296.sc' filamplxe: Executing actions 12 % Loading 'systemcollector-128460-golub296.sc' filamplxe: Executing actions 12 % Loading '128460-128465.0.trace' file            amplxe: Executing actions 12 % Loading '/home/yhyuan2/yhyuan2/mp2/r000hs/data.0amplxe: Executing actions 12 % Updating precomputed scalar metrics             amplxe: Executing actions 14 % Updating precomputed scalar metrics             amplxe: Executing actions 14 % Processing profile metrics and debug informationamplxe: Executing actions 19 % Processing profile metrics and debug informationamplxe: Executing actions 19 % Setting data model parameters                   amplxe: Executing actions 19 % Resolving module symbols                        amplxe: Executing actions 19 % Resolving information for `matrix'              amplxe: Executing actions 19 % Resolving information for `libc.so.6'           
+amplxe: Warning: Cannot locate debugging information for file `/lib64/libc.so.6'.
+amplxe: Executing actions 20 % Resolving information for `libc.so.6'           amplxe: Executing actions 20 % Resolving information for `libtpsstool.so'      
+amplxe: Warning: Cannot locate debugging information for file `/usr/local/intel/parallel_studio_xe_2019_update4/vtune_amplifier_2019.4.0.597835/lib64/libtpsstool.so'.
+amplxe: Executing actions 21 % Resolving information for `libtpsstool.so'      amplxe: Executing actions 22 % Resolving information for `libtpsstool.so'      amplxe: Executing actions 22 % Resolving bottom user stack information         amplxe: Executing actions 23 % Resolving bottom user stack information         amplxe: Executing actions 23 % Resolving thread name information               amplxe: Executing actions 24 % Resolving thread name information               amplxe: Executing actions 24 % Resolving call target names for dynamic code    amplxe: Executing actions 25 % Resolving call target names for dynamic code    amplxe: Executing actions 26 % Resolving call target names for dynamic code    amplxe: Executing actions 26 % Processing profile metrics and debug informationamplxe: Executing actions 28 % Processing profile metrics and debug informationamplxe: Executing actions 30 % Processing profile metrics and debug informationamplxe: Executing actions 31 % Processing profile metrics and debug informationamplxe: Executing actions 31 % Setting data model parameters                   amplxe: Executing actions 32 % Setting data model parameters                   amplxe: Executing actions 32 % Precomputing frequently used data               amplxe: Executing actions 32 % Precomputing frequently used data               amplxe: Executing actions 33 % Precomputing frequently used data               amplxe: Executing actions 35 % Precomputing frequently used data               amplxe: Executing actions 36 % Precomputing frequently used data               amplxe: Executing actions 38 % Precomputing frequently used data               amplxe: Executing actions 38 % Updating precomputed scalar metrics             amplxe: Executing actions 39 % Updating precomputed scalar metrics             amplxe: Executing actions 39 % Discarding redundant overtime data              amplxe: Executing actions 41 % Discarding redundant overtime data              amplxe: Executing actions 41 % Saving the result                               amplxe: Executing actions 42 % Saving the result                               amplxe: Executing actions 44 % Saving the result                               amplxe: Executing actions 50 % Saving the result                               amplxe: Executing actions 50 % Generating a report                             amplxe: Executing actions 50 % Setting data model parameters                   amplxe: Executing actions 75 % Setting data model parameters                   amplxe: Executing actions 75 % Generating a report                             amplxe: Executing actions 100 % Generating a report                            amplxe: Executing actions 100 % done                                           
+----------------------------------------
+Begin Torque Epilogue (Sat Sep 28 18:36:05 2019)
+Job ID:           9634099.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         matmul
+Session:          128373
+Limits:           walltime=00:20:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Resources:        cput=00:00:19,vmem=0kb,walltime=00:00:19,mem=0kb,energy_used=0
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub296
+End Torque Epilogue
+----------------------------------------

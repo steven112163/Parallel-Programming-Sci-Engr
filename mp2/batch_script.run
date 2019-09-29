@@ -7,6 +7,6 @@
 
 cd $PBS_O_WORKDIR
 module load intel/.19.0
-echo "running with n=2000, b=100"
+echo "running with n=2000, tile=100"
 ./randMatrix 2000 2000 2000 2000 > test.txt
 amplxe-cl -collect hotspots ./matrix -oa -t 100 < test.txt

@@ -68,3 +68,9 @@ void freeMatrix(matrix*);
  * Create a new matrix of the specified size.
  */
 matrix* newMatrix(int, int);
+
+/**
+ * Get the time.
+ */
+void get_walltime_(double*);
+void get_walltime(double*);

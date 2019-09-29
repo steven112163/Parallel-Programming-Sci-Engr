@@ -5,6 +5,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/time.h>
+#include <immintrin.h>
 #include "matrix.h"
 
 #define MIN(x, y) (((x) < (y)) ? (x) : (y))
@@ -28,7 +30,18 @@ int main(int argc, char** argv) {
     } else {
         matrix *a = readMatrix();
         matrix *b = readMatrix();
+        
+        // Get start time
+        double startTime, endTime;
+        get_walltime(&startTime);
+        
         matrix *c = tiledMatMul(a, b, tileSize);
+        
+        // Get end time and calculate ops, then print analytics
+        get_walltime(&endTime);
+        long ops = (long)a->row * (long)b->col * (long)b->row * 2;
+        printAnalytics(ops, ops/(endTime - startTime)/1000000.0);
+        
         if (!onlyAnalytics(argc, argv)) {
             printMatrix(c);
         }
@@ -37,6 +50,8 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
+
 
 int isLu(int argc, char **argv){
     int luFlag = 0;
@@ -49,9 +64,11 @@ int isLu(int argc, char **argv){
     return luFlag;
 }
 
+
+
 int isTiled(int argc, char** argv){
     int tileSize = -1;
-    for(int n=1; n < argc; n++){
+    for(int n = 1; n < argc; n++){
         if(strcmp(argv[n], "-t") == 0){
             tileSize = atoi(argv[n+1]);
             break;
@@ -59,6 +76,8 @@ int isTiled(int argc, char** argv){
     }
     return tileSize;
 }
+
+
 
 matrix* newMatrix(int numRows, int numCols) {
     matrix* mat = (matrix*) malloc(sizeof(matrix));
@@ -74,6 +93,8 @@ matrix* newMatrix(int numRows, int numCols) {
     return mat;
 }
 
+
+
 void freeMatrix(matrix* mat) {
     for (int i = 0; i < mat->row; i++) {
         free(mat->val[i]);
@@ -81,6 +102,8 @@ void freeMatrix(matrix* mat) {
     free(mat->val);
     free(mat);
 }
+
+
 
 matrix* readMatrix(){
     int numRows, numCols;
@@ -95,15 +118,40 @@ matrix* readMatrix(){
     return mat;
 }
 
+
+
 matrix* tiledMatMul(matrix *m1, matrix *m2, int tileSize) {
     matrix *result = newMatrix(m1->row, m2->col);
 
     /* TODO : implement tiled matrix-matrix multiplication
      *        with intrinsics
      */
-
+    int rowTiles = m1->row / tileSize,
+        colTiles = m2->col / tileSize,
+        innTiles = m2->row / tileSize;
+    __m256d m1Vector, m2Vector, rVector;
+    for(int rowOfBlocks = 0; rowOfBlocks < rowTiles; rowOfBlocks++)
+        for(int colOfBlocks = 0; colOfBlocks < colTiles; colOfBlocks++)
+            for(int innerBlocks = 0; innerBlocks < innTiles; innerBlocks++) {
+                int rowOffset = rowOfBlocks*tileSize + tileSize,
+                    colOffset = colOfBlocks*tileSize + tileSize,
+                    innOffset = innerBlocks*tileSize + tileSize;
+                for(int i = rowOffset - tileSize; i < rowOffset; i++)
+                    for(int k = innOffset - tileSize; k < innOffset; k++)
+                        for(int j = colOffset - tileSize; j < colOffset; j += 4) {
+                            rVector = _mm256_load_pd(&result->val[i][j]);
+                            m1Vector = _mm256_broadcast_sd(&m1->val[i][k]);
+                            m2Vector = _mm256_load_pd(&m2->val[k][j]);
+                            _mm256_store_pd(&result->val[i][j],
+                                            _mm256_add_pd(rVector,
+                                                  _mm256_mul_pd(m1Vector, m2Vector)));
+                        }
+            }
+    
     return result;
 }
+
+
 
 void luDecomposition(matrix* a, matrix* l, matrix* u) {
     // TODO : implement lu decomposition with intrinsics
@@ -134,14 +182,20 @@ void luDecomposition(matrix* a, matrix* l, matrix* u) {
     }
 }
 
+
+
 void error(){
     printf("Error. Exiting the program.\n");
     exit(1);
 }
 
+
+
 void printAnalytics(long ops, double mFlops){
-    printf("Operations: %ld and MegaFlops/s:%lf\n",ops, mFlops);
+    printf("Operations: %lld and MegaFlops/s:%lf\n", ops, mFlops);
 }
+
+
 
 int onlyAnalytics(int argc, char **argv){
     int oaFlag = 0;
@@ -154,6 +208,8 @@ int onlyAnalytics(int argc, char **argv){
     return oaFlag;
 }
 
+
+
 void printMatrix(matrix *mat){
     printf("%d %d\n", mat->row, mat->col);
     for(int n=0; n < mat->row; n++){
@@ -162,4 +218,18 @@ void printMatrix(matrix *mat){
         }
         printf("\n");
     }
+}
+
+
+
+void get_walltime_(double* wcTime) {
+    struct timeval tp;
+    gettimeofday(&tp, NULL);
+    *wcTime = (double)(tp.tv_sec + tp.tv_usec/1000000.0);
+}
+
+
+
+void get_walltime(double* wcTime) {
+    get_walltime_(wcTime);
 }

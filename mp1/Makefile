@@ -1,6 +1,6 @@
 CC=icc
 CFLAG= -std=c99 -Wall
-OFLAG= -Ofast -xHost -qopt-prefetch -unroll-aggressive
+OFLAG= -Ofast -xHost -qopt-prefetch -unroll-aggressive -g
 DEBUGFLAG= -g
 
 all: matrix matrix_debug randMatrix
