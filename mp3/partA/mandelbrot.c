@@ -50,13 +50,38 @@ int main(int argc, char** argv)
     kData.img = malloc(sizeof(int) * kData.width * kData.height * 3);
     // Directly call `generateMandelbrot' in serial mode
     if (serial) {
-        generateMandelbrot(0, kData.width, kData.width, kData.height, (int(*)[kData.height][3])kData.img);
+        arg_t args;
+        args.startX = 0;
+        args.endX = kData.width;
+        args.width = kData.width;
+        args.height = kData.height;
+        generateMandelbrot(&args);
     }
     else {
         // TODO fork-join into (kData.numThreads) threads
         // each task should call generateMandelbrot with an appropriate, non-overlapping startX and endX as follows:
         //   generateMandelbrot(startX, endX, kData.width, kData.height, (int(*)[(kData.height)][3])kData.img);
         // it is up to you to decide how to divide the work between threads
+        int offset = 0;
+        int interval = (int) kData.width / kData.numThreads;
+        pthread_t threads[kData.numThreads];
+        arg_t args[kData.numThreads];
+        for (int i = 0; i < kData.numThreads - 1; i++) {
+            args[i].startX = offset;
+            args[i].endX = offset + interval;
+            args[i].width = kData.width;
+            args[i].height = kData.height;
+            pthread_create(&threads[i], NULL, generateMandelbrot, &args[i]);
+            offset += interval;
+        }
+        args[kData.numThreads-1].startX = offset;
+        args[kData.numThreads-1].endX = kData.width;
+        args[kData.numThreads-1].width = kData.width;
+        args[kData.numThreads-1].height = kData.height;
+        pthread_create(&threads[kData.numThreads-1], NULL, generateMandelbrot, &args[kData.numThreads-1]);
+        
+        for (int i = 0; i < kData.numThreads; i++)
+            pthread_join(threads[i], NULL);
     }
     // Write the output file 
     int rc = writeMandelbrot(dest, kData.width, kData.height, (int(*)[kData.height][3])kData.img);
@@ -78,12 +103,13 @@ inline int mandelbrot(int x, int y, int width, int height)
     return 255 - (int)(((double)(n * 255)) / MAX_ITER);
 }
 
-void generateMandelbrot(int startX, int endX, int width, int height, int img[width][height][3])
+void generateMandelbrot(arg_t* args)
 {
+    int (*img)[args->height][3] = (int(*)[kData.height][3])kData.img;
     // Assign the result of mandelbrot(x,y) to each value in our section
-    for (int x = startX; x < endX; x++) {
-        for (int y = 0; y < height; y++) {
-            int cval = mandelbrot(x, y, width, height);
+    for (int x = args->startX; x < args->endX; x++) {
+        for (int y = 0; y < args->height; y++) {
+            int cval = mandelbrot(x, y, args->width, args->height);
             img[x][y][0] = cval;
             img[x][y][1] = cval;
             img[x][y][2] = cval;

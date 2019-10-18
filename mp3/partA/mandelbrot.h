@@ -14,8 +14,15 @@ typedef struct mandelbrot {
     int *img;
 } mandelbrot_t;
 
+typedef struct arg_struct {
+    int startX;
+    int endX;
+    int width;
+    int height;
+} arg_t;
+
 int mandelbrot(int x, int y, int width, int height);
-void generateMandelbrot(int startX, int endX, int width, int height, int img[width][height][3]);
+void generateMandelbrot(arg_t* args);
 int writeMandelbrot(const char* dest, int width, int height, int img[width][height][3]);
 
 #endif

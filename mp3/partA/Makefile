@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS= 
+CFLAGS=
 OPTS= -O3
 LIBS= -lpng -lm -lpthread
 OUTFILE=out.png
@@ -13,4 +13,4 @@ clean:
 	rm -f mandelbrot $(OUTFILE)
 
 test: mandelbrot
-	./mandelbrot -w 480 -h 480 -o $(OUTFILE)
+	./mandelbrot -w 480 -h 480 -o $(OUTFILE) -n 36
