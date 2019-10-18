@@ -1,0 +1,11 @@
+Generating a 256x256 mandelbrot with thread counts: [1, 2, 4, 6, 8, 12, 24, 28, 32]
+The serial version ran for 0.09546668699476868 s.
+The parallel version, with 1 thread(s), ran for 0.08008485799655318 s, a speedup of 1.192x.
+The parallel version, with 2 thread(s), ran for 0.06542176098446362 s, a speedup of 1.459x.
+The parallel version, with 4 thread(s), ran for 0.058496186014963314 s, a speedup of 1.632x.
+The parallel version, with 6 thread(s), ran for 0.0453627250099089 s, a speedup of 2.105x.
+The parallel version, with 8 thread(s), ran for 0.03752409399021417 s, a speedup of 2.544x.
+The parallel version, with 12 thread(s), ran for 0.031436049001058564 s, a speedup of 3.037x.
+The parallel version, with 24 thread(s), ran for 0.0273313180077821 s, a speedup of 3.493x.
+The parallel version, with 28 thread(s), ran for 0.028331621986581013 s, a speedup of 3.370x.
+The parallel version, with 32 thread(s), ran for 0.0240594909992069 s, a speedup of 3.968x.

@@ -1,0 +1,10 @@
+#!/bin/bash
+#PBS -l walltime=00:20:00
+#PBS -l nodes=1:ppn=12
+#PBS -N mandelbrot
+#PBS -q cs
+#PBS -W group_list=19fa-cs420d3-vtune
+
+cd $PBS_O_WORKDIR
+module load python/3 && unset PYTHONPATH
+python3 benchmark.py 256
