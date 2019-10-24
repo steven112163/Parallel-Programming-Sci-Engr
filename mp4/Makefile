@@ -16,4 +16,4 @@ tree: tree.c tree.h
 	$(CC) $(CFLAG) tree.h tree.c -o tree
 
 clean:
-	rm -f matrix matrix-nop matrix_debug
+	rm -f hashTree tree hashTree_debug
