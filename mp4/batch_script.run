@@ -1,0 +1,29 @@
+#!/bin/bash
+#PBS -l walltime=00:20:00
+#PBS -l nodes=1:ppn=12
+#PBS -N matmul
+#PBS -q cs
+#PBS -W group_list=19fa-cs420d3-vtune
+
+cd $PBS_O_WORKDIR
+module load intel/.19.0
+./tree 2056 > tree-2056.txt
+./tree 6168 > tree-6168.txt
+./tree 10240 > tree-10240.txt
+./tree 20480 > tree-20480.txt
+echo "running with 2056 nodes"
+./hashTree < tree-2056.txt
+./hashTree -t 2 < tree-2056.txt
+./hashTree -t 4 < tree-2056.txt
+echo "running with 6168 nodes"
+./hashTree < tree-6168.txt
+./hashTree -t 2 < tree-6168.txt
+./hashTree -t 4 < tree-6168.txt
+echo "running with 10240 nodes"
+./hashTree < tree-10240.txt
+./hashTree -t 2 < tree-10240.txt
+./hashTree -t 4 < tree-10240.txt
+echo "running with 20480 nodes"
+./hashTree < tree-20480.txt
+./hashTree -t 2 < tree-20480.txt
+./hashTree -t 4 < tree-20480.txt
