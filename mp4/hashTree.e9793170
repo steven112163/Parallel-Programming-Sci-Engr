@@ -1,0 +1,26 @@
+----------------------------------------
+Begin Torque Prologue (Sun Oct 27 20:23:43 2019)
+Job ID:           9793170.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         hashTree
+Limits:           walltime=01:00:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub292
+End Torque Prologue
+----------------------------------------
+----------------------------------------
+Begin Torque Epilogue (Sun Oct 27 20:45:06 2019)
+Job ID:           9793170.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         hashTree
+Session:          36565
+Limits:           walltime=01:00:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Resources:        cput=00:57:02,vmem=2068428kb,walltime=00:21:22,mem=848920kb,energy_used=0
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub292
+End Torque Epilogue
+----------------------------------------

@@ -35,16 +35,13 @@ int main(int argc, char** argv){
         if(isMasterSlave(argc, argv) == -1){
             //TODO: Parallelize hash tree
             pthread_t threads[threadCount];
-            int half = (int)threadCount / 2;
-            for(int i = 0; i < half; i++)
-                pthread_create(&threads[i], NULL, hashTreeParallel, head->left);
-            for(int i = half; i < threadCount; i++)
-                pthread_create(&threads[i], NULL, hashTreeParallel, head->right);
+            for(int i = 0; i < threadCount; i++)
+                pthread_create(&threads[i], NULL, hashTreeParallel, head);
             
             for(int i = 0; i < threadCount; i++)
                 pthread_join(threads[i], NULL);
             
-            treeHash = hash(head->data, &head->miningProof, head->left->hash, head->right->hash);
+            treeHash = head->hash;
         }
         else{
             //TODO: Master Slave hash tree(4 credit students only)
@@ -130,49 +127,54 @@ unsigned char* hashTree(node* curr) {
     return curr->hash;
 }
 
-void* hashTreeParallel(void* node_curr){
+void* hashTreeParallel(void* node_curr) {
     //TODO: Parallel hash tree
     node* curr = (node*) node_curr;
     if(curr->status == 1)
         return curr->hash;
     
+    unsigned char* temp;
     if(!curr->left && !curr->right) {
+        temp = hash(curr->data, &curr->miningProof, NULL, NULL);
         pthread_mutex_lock(&lock);
-        curr->hash = hash(curr->data, &curr->miningProof, NULL, NULL);
+        curr->hash = temp;
         curr->status = 1;
-        pthread_mutex_unlock(&lock); 
+        pthread_mutex_unlock(&lock);
         return curr->hash;
     } else if(!curr->left) {
-        unsigned char* rightHash = hashTree(curr->right);
+        unsigned char* rightHash = hashTreeParallel(curr->right);
+        temp = hash(curr->data, &curr->miningProof, NULL, rightHash);
         pthread_mutex_lock(&lock);
-        curr->hash = hash(curr->data, &curr->miningProof, NULL, rightHash);
+        curr->hash = temp;
         curr->status = 1;
-        pthread_mutex_unlock(&lock); 
+        pthread_mutex_unlock(&lock);
         return curr->hash;
     } else if(!curr->right) {
-        unsigned char* leftHash = hashTree(curr->left);
+        unsigned char* leftHash = hashTreeParallel(curr->left);
+        temp = hash(curr->data, &curr->miningProof, leftHash, NULL);
         pthread_mutex_lock(&lock);
-        curr->hash = hash(curr->data, &curr->miningProof, leftHash, NULL);
+        curr->hash = temp;
         curr->status = 1;
-        pthread_mutex_unlock(&lock); 
+        pthread_mutex_unlock(&lock);
+        return curr->hash;
+    } else {
+        short rightOrLeft = rand() % 2;
+        unsigned char* rightHash; 
+        unsigned char* leftHash;
+        if(rightOrLeft == 1) {
+            rightHash = hashTreeParallel(curr->right);
+            leftHash = hashTreeParallel(curr->left);
+        } else {
+            leftHash = hashTreeParallel(curr->left);
+            rightHash = hashTreeParallel(curr->right);
+        }
+        temp = hash(curr->data, &curr->miningProof, leftHash, rightHash);
+        pthread_mutex_lock(&lock);
+        curr->hash = temp;
+        curr->status = 1;
+        pthread_mutex_unlock(&lock);
         return curr->hash;
     }
-    
-    short rightOrLeft = rand() % 2;
-    unsigned char* rightHash; 
-    unsigned char* leftHash;
-    if(rightOrLeft == 1) {
-        rightHash = hashTree(curr->right);
-        leftHash = hashTree(curr->left);
-    } else {
-        leftHash = hashTree(curr->left);
-        rightHash = hashTree(curr->right);
-    }
-    pthread_mutex_lock(&lock);
-    curr->hash = hash(curr->data, &curr->miningProof, leftHash, rightHash);
-    curr->status = 1;
-    pthread_mutex_unlock(&lock);
-    return curr->hash;
 }
 
 unsigned char* hash(unsigned char* data, unsigned char** miningProof, unsigned char* lHash, unsigned char* rHash){

@@ -1,7 +1,7 @@
 #!/bin/bash
-#PBS -l walltime=00:20:00
+#PBS -l walltime=00:60:00
 #PBS -l nodes=1:ppn=12
-#PBS -N matmul
+#PBS -N hashTree
 #PBS -q cs
 #PBS -W group_list=19fa-cs420d3-vtune
 
@@ -17,13 +17,13 @@ echo "running with 2056 nodes"
 ./hashTree -t 4 < tree-2056.txt
 echo "running with 6168 nodes"
 ./hashTree < tree-6168.txt
-./hashTree -t 2 < tree-6168.txt
 ./hashTree -t 4 < tree-6168.txt
+./hashTree -t 8 < tree-6168.txt
 echo "running with 10240 nodes"
 ./hashTree < tree-10240.txt
-./hashTree -t 2 < tree-10240.txt
-./hashTree -t 4 < tree-10240.txt
+./hashTree -t 8 < tree-10240.txt
+./hashTree -t 12 < tree-10240.txt
 echo "running with 20480 nodes"
 ./hashTree < tree-20480.txt
-./hashTree -t 2 < tree-20480.txt
-./hashTree -t 4 < tree-20480.txt
+./hashTree -t 12 < tree-20480.txt
+./hashTree -t 16 < tree-20480.txt
