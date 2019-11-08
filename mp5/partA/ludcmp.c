@@ -24,8 +24,9 @@ void ludcmp(float **a, int n, int *indx, float *d)
 			sum = a[i][j];
       //#pragma omp parallel for simd shared(i, j, sum, a) private(k)
 			for (k = 1; k < i; k++)
-        //#pragma omp atomic update
+        //#pragma omp critical
         sum -= a[i][k]*a[k][j];
+      //#pragma omp barrier
 			a[i][j] = sum;
 		}
 		big = 0.0;
@@ -41,6 +42,7 @@ void ludcmp(float **a, int n, int *indx, float *d)
 				imax = i;
 			}
 		}
+    #pragma omp barrier
 		if (j != imax) {
       #pragma omp parallel for simd shared(n, a, imax, j) private(k, dum)
 			for (k = 1; k <= n; k++) {
@@ -48,6 +50,7 @@ void ludcmp(float **a, int n, int *indx, float *d)
 				a[imax][k] = a[j][k];
 				a[j][k] = dum;
 			}
+      #pragma omp barrier
 			*d = -(*d);
 			vv[imax] = vv[j];
 		}
@@ -57,6 +60,7 @@ void ludcmp(float **a, int n, int *indx, float *d)
 			dum = 1.0 / (a[j][j]);
       #pragma omp parallel for simd shared(j, n, dum, a) private(i)
 			for (i = j + 1; i <= n; i++) a[i][j] *= dum;
+      #pragma omp barrier
 		}
 	}
 	free_vector(vv, 1, n);

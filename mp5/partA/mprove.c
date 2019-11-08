@@ -16,6 +16,7 @@ void mprove(float **a, float **alud, int n, int indx[], float b[], float x[])
 		for (j = 1; j <= n; j++) sdp += a[i][j]*x[j];
 		r[i] = sdp;
 	}
+  #pragma omp barrier
 	lubksb(alud, n, indx, r);
   for (i = 1; i <= n; i++) x[i] -= r[i];
 	free_vector(r, 1, n);
