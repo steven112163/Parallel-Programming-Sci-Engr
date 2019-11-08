@@ -1,0 +1,26 @@
+----------------------------------------
+Begin Torque Prologue (Fri Nov  8 17:06:56 2019)
+Job ID:           9846140.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         NumericalRecipe
+Limits:           walltime=00:20:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub292
+End Torque Prologue
+----------------------------------------
+----------------------------------------
+Begin Torque Epilogue (Fri Nov  8 17:10:35 2019)
+Job ID:           9846140.cc-mgmt1.campuscluster.illinois.edu
+Username:         yhyuan2
+Group:            19fa-cs420d3-vtune
+Job Name:         NumericalRecipe
+Session:          37240
+Limits:           walltime=00:20:00,nodes=1:ppn=12,neednodes=1:ppn=12
+Resources:        cput=00:25:27,vmem=2062288kb,walltime=00:03:39,mem=53248kb,energy_used=0
+Job Queue:        cs
+Account:          cs-vtune
+Nodes:            golub292
+End Torque Epilogue
+----------------------------------------

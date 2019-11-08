@@ -1,6 +1,6 @@
 CC=icc
 CFLAGS:= -O3 -w -g $(CFLAGS)
-OMPFLAG= -fopenmp -qopenmp
+OMPFLAG= -qopenmp
 LIBS:= -lm
 SRCS= pade.c lubksb.c ludcmp.c mprove.c ratval.c 
 

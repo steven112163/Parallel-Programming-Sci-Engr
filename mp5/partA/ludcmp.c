@@ -22,18 +22,15 @@ void ludcmp(float **a, int n, int *indx, float *d)
   for (j = 1; j <= n; j++) {
 		for (i = 1; i < j; i++) {
 			sum = a[i][j];
-      //#pragma omp parallel for simd shared(i, j, sum, a) private(k)
-			for (k = 1; k < i; k++)
-        //#pragma omp critical
+      for (k = 1; k < i; k++)
         sum -= a[i][k]*a[k][j];
-      //#pragma omp barrier
 			a[i][j] = sum;
 		}
 		big = 0.0;
-    #pragma omp parallel for simd shared(j, n, a, vv, big, imax) private(i, k, sum, dum)
+    #pragma omp parallel for simd private(i, k, sum, dum)
     for (i = j; i <= n; i++) {
 			sum = a[i][j];
-			for (k = 1; k < j; k++)
+      for (k = 1; k < j; k++)
 				sum -= a[i][k]*a[k][j];
       a[i][j] = sum;
       #pragma omp critical
@@ -44,7 +41,7 @@ void ludcmp(float **a, int n, int *indx, float *d)
 		}
     #pragma omp barrier
 		if (j != imax) {
-      #pragma omp parallel for simd shared(n, a, imax, j) private(k, dum)
+      #pragma omp parallel for simd private(k, dum)
 			for (k = 1; k <= n; k++) {
 				dum = a[imax][k];
 				a[imax][k] = a[j][k];
@@ -58,7 +55,7 @@ void ludcmp(float **a, int n, int *indx, float *d)
 		if (a[j][j] == 0.0) a[j][j] = TINY;
 		if (j != n) {
 			dum = 1.0 / (a[j][j]);
-      #pragma omp parallel for simd shared(j, n, dum, a) private(i)
+      #pragma omp parallel for simd private(i)
 			for (i = j + 1; i <= n; i++) a[i][j] *= dum;
       #pragma omp barrier
 		}
