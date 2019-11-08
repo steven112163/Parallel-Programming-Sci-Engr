@@ -1,6 +1,6 @@
 CC=icc
-CFLAGS:= -O3 -w $(CFLAGS)
-OMPFLAG= -fopenmp
+CFLAGS:= -O3 -w -g $(CFLAGS)
+OMPFLAG= -fopenmp -qopenmp
 LIBS:= -lm
 SRCS= pade.c lubksb.c ludcmp.c mprove.c ratval.c 
 
@@ -15,5 +15,10 @@ xpade_omp.run: nr.h nrutil.* xpade.c $(SRCS)
 clean:
 	rm -f xpade*.run
 
-test: all
+test: test1 test2
+
+test1:
 	./xpade.run --verbose 32
+
+test2:
+	./xpade_omp.run --verbose 32

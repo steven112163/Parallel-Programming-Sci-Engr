@@ -8,7 +8,7 @@ def even_factors(x):
         if x % i == 0 and i % 2 == 0:
             yield i
 
-reps  = 1
+reps  = 4
 size  = 2048 if len(argv) == 1 else int(argv[1])
 cores = sorted([1, cpu_count() + 4] + list(even_factors(cpu_count())))
 
