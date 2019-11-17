@@ -22,6 +22,26 @@ void send_ghosts(int tag, int w, int h, float src[w + 2][h + 2],
    * helper functions for this task. Use the grid information
    * to determine which ranks to send values to. 
    */
+  if (0 <= kGridX - 1) {
+    // has top
+    copy_colbuf_out(w, h, src, 1, colBuf);
+    MPI_Send(colBuf, h, MPI_FLOAT, kRank - kGridCols, tag, MPI_COMM_WORLD);
+  }
+  if (kGridX + 1 < kGridRows) {
+    // has bottom
+    copy_colbuf_out(w, h, src, w, colBuf);
+    MPI_Send(colBuf, h, MPI_FLOAT, kRank + kGridCols, tag, MPI_COMM_WORLD);
+  }
+  if (0 <= kGridY - 1) {
+    // has left
+    copy_rowbuf_out(w, h, src, 1, rowBuf);
+    MPI_Send(rowBuf, w, MPI_FLOAT, kRank - 1, tag, MPI_COMM_WORLD);
+  }
+  if (kGridY + 1 < kGridCols) {
+    // has right
+    copy_rowbuf_out(w, h, src, h, rowBuf);
+    MPI_Send(rowBuf, w, MPI_FLOAT, kRank + 1, tag, MPI_COMM_WORLD);
+  }
 }
 
 void recv_ghosts(int tag, int w, int h, float dst[w + 2][h + 2],
@@ -33,6 +53,26 @@ void recv_ghosts(int tag, int w, int h, float dst[w + 2][h + 2],
    * helper functions for this task. Use the grid information
    * to determine which ranks to receive values from. 
    */
+  if (0 <= kGridX - 1) {
+    // has top
+    MPI_Recv(colBuf, h, MPI_FLOAT, kRank - kGridCols, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    copy_colbuf_in(w, h, dst, 0, colBuf);
+  }
+  if (kGridX + 1 < kGridRows) {
+    // has bottom
+    MPI_Recv(colBuf, h, MPI_FLOAT, kRank + kGridCols, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    copy_colbuf_in(w, h, dst, w+1, colBuf);
+  }
+  if (0 <= kGridY - 1) {
+    // has left
+    MPI_Recv(rowBuf, w, MPI_FLOAT, kRank - 1, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    copy_rowbuf_in(w, h, dst, 0, rowBuf);
+  }
+  if (kGridY + 1 < kGridCols) {
+    // has right
+    MPI_Recv(rowBuf, w, MPI_FLOAT, kRank + 1, tag, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
+    copy_rowbuf_in(w, h, dst, h+1, rowBuf);
+  }
 }
 
 double get_wall_time() {
