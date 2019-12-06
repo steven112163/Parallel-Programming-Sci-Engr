@@ -1,0 +1,12 @@
+*
+!Makefile
+!randMatrix
+!*.c
+!*.h
+!.gitignore
+!*.pdf
+!*.run
+!testCases/
+!testCases/*.txt
+!solutions/
+!solutions/*.txt

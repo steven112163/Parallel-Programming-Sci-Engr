@@ -1,0 +1,12 @@
+*
+!Makefile
+!*.c
+!*.h
+!*.py
+!.gitignore
+!*.pdf
+!*.run
+!testCases/
+!testCases/*.txt
+!solutions/
+!solutions/*.png

@@ -1,0 +1,8 @@
+*
+!Makefile
+!*.c
+!*.h
+!*.py
+!.gitignore
+!*.pdf
+!*.run

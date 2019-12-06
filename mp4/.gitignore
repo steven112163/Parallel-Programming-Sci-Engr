@@ -1,0 +1,9 @@
+*
+!Makefile
+!*.c
+!*.h
+!.gitignore
+!*.pdf
+!*.run
+!tests/
+!tests/*.txt
